@@ -11,7 +11,7 @@ with open('repos.list', 'r+') as repos_list:
     sys.stdout = open(os.devnull, 'w')
     html = requests.get('https://github.com/trending')
     html.raise_for_status()
-    soup = bs4.BeautifulSoup(html.text)
+    soup = bs4.BeautifulSoup(html.text, 'lxml')
     elements = soup.select('.repo-list > li > div > h3 > a')[:6]
     rel_urls = [el.attrs['href'] for el in elements]
     urls = [rel_url for rel_url in rel_urls if rel_url not in repos]
