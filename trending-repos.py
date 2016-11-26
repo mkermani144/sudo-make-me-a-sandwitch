@@ -1,3 +1,7 @@
+'''
+This script opens 6 top today's trending github repos in your browser
+Repos are selected based on https://github.com/trending
+'''
 import requests
 import bs4
 import webbrowser
