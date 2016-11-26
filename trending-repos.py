@@ -4,7 +4,6 @@ import webbrowser
 import os
 import sys
 sys.stdout = open(os.devnull, 'w')
-print(sys.stdout)
 html = requests.get('https://github.com/trending')
 html.raise_for_status()
 soup = bs4.BeautifulSoup(html.text)
