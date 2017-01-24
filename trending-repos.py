@@ -7,10 +7,11 @@ import bs4
 import webbrowser
 import os
 import sys
-if not os.path.isfile('repos.list'):
-    f = open('repos.list', 'w+')
+repos_file = os.path.dirname(os.path.realpath(__file__)) + '/repos.list'
+if not os.path.isfile(repos_file):
+    f = open(repos_file, 'w+')
     f.close()
-with open('repos.list', 'r+') as repos_list:
+with open(repos_file, 'r+') as repos_list:
     repos = repos_list.read().splitlines()
     sys.stdout = open(os.devnull, 'w')
     html = requests.get('https://github.com/trending')
