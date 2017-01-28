@@ -5,20 +5,29 @@ in a picture.
 import sys
 from PIL import Image
 from collections import Counter as counter
+from optparse import OptionParser
 
+parser = OptionParser('Usage: color-palette [options] <image>')
+parser.add_option(
+    '-l', '--palette-length',
+    dest='palette_length',
+    default=5,
+    type='int',
+    help='set number of colors in the palette')
+parser.add_option(
+    '-t', '--treshold',
+    dest='treshold',
+    default=50,
+    type='int',
+    help='set treshold of difference between colors')
 
-if not 1 < len(sys.argv) < 5:
-    print('Usage: color-palette <image> [<palette-length>] [<treshold>]')
-    exit(1)
-try:
-    treshold = int(sys.argv[3])
-except:
-    treshold = 50
-try:
-    palette_length = int(sys.argv[2])
-except:
-    palette_length = 5
-image = Image.open(sys.argv[1])
+options, args = parser.parse_args()
+treshold = options.treshold
+palette_length = options.palette_length
+if len(args) == 0:
+    parser.error('No image specified.')
+
+image = Image.open(args[-1])
 image_pixels = image.getdata()
 image_pixels = [(x[0], x[1], x[2]) for x in image_pixels]
 image_dict = dict(counter(image_pixels))
