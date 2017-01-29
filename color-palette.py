@@ -53,7 +53,12 @@ image_twins.sort(reverse=True)
 temp = []
 current = 0
 while palette_length:
-    m = image_twins[current][1]
+    try:
+        m = image_twins[current][1]
+    except IndexError:
+        print('Ooooops! We ran out of colors :(')
+        print('Try reducing treshold or use a picture with higher resolution.')
+        exit(1)
     image_dict.pop(m)
     isSimilar = False
     for el in temp:
