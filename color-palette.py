@@ -47,9 +47,12 @@ image.thumbnail((image.size[0]*ratio, image.size[1]*ratio), Image.ANTIALIAS)
 image_pixels = image.getdata()
 image_pixels = [(x[0], x[1], x[2]) for x in image_pixels]
 image_dict = dict(counter(image_pixels))
+image_twins = [(image_dict[i], i) for i in image_dict]
+image_twins.sort(reverse=True)
 temp = []
+current = 0
 while palette_length:
-    m = max(image_dict, key=image_dict.get)
+    m = image_twins[current][1]
     image_dict.pop(m)
     isSimilar = False
     for el in temp:
@@ -69,3 +72,4 @@ while palette_length:
             rgb_to_hex(m)))
         palette_length -= 1
         temp.append(m)
+    current += 1
