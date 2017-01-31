@@ -1,5 +1,5 @@
 '''
-This script generates a color pallete containing the colors which are most used
+This script generates a color palette containing the colors which are most used
 in a picture.
 '''
 import sys
