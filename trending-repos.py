@@ -15,10 +15,17 @@ parser.add_option(
     dest='num_of_repos',
     default='6',
     type='int',
-    help='number of trending repos to be opened in the browser')
+    help='set number of trending repos to be opened in the browser')
+parser.add_option(
+    '-f', '--force',
+    action='store_true',
+    dest='is_forced',
+    help='open all of trending repos, including previously-visited ones.'
+)
 
 options, args = parser.parse_args()
 num_of_repos = options.num_of_repos
+is_forced = options.is_forced
 if num_of_repos > 25:
     parser.error('There are only 25 trending repos available')
 
@@ -37,6 +44,8 @@ with open(repos_file, 'r+') as repos_list:
     urls = [rel_url for rel_url in rel_urls if rel_url not in repos]
     print('New repos:', len(urls))
     print('Previously visited repos:', num_of_repos - len(urls))
+    if is_forced:
+        urls = rel_urls
     def_stdout = os.dup(1)
     devnull = os.open(os.devnull, os.O_WRONLY)
     os.dup2(devnull, 1)
