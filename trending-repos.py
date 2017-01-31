@@ -7,6 +7,10 @@ import bs4
 import webbrowser
 import os
 import sys
+
+devnull = os.open(os.devnull, os.O_WRONLY)
+os.dup2(devnull, 1)
+
 repos_file = os.path.dirname(os.path.realpath(__file__)) + '/repos.list'
 if not os.path.isfile(repos_file):
     f = open(repos_file, 'w+')
@@ -21,5 +25,5 @@ with open(repos_file, 'r+') as repos_list:
     rel_urls = [el.attrs['href'] for el in elements]
     urls = [rel_url for rel_url in rel_urls if rel_url not in repos]
     for url in urls:
-        webbrowser.open('https://github.com' + url)
+        webbrowser.get().open('https://github.com' + url)
         repos_list.write(url + '\n')
