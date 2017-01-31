@@ -1,5 +1,5 @@
 '''
-This script opens top 6 today's trending github repos in your browser
+This script opens top today's trending github repos in your browser
 if you have not previously visited them.
 Repos are selected based on https://github.com/trending.
 '''

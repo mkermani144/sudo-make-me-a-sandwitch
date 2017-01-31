@@ -7,7 +7,7 @@ Inspired by [hacker-scripts](https://github.com/NARKOZ/hacker-scripts).
 
 [1. trending-repos](trending-repos.py)  
 ----
-This script opens top 6 today's trending github repos in your browser if you have not
+This script opens top today's trending github repos in your browser if you have not
 previously visited them.
 
 [2. color-palette](color-palette.py)  
